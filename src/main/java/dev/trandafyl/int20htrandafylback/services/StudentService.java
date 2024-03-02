@@ -1,7 +1,9 @@
 package dev.trandafyl.int20htrandafylback.services;
 
+import dev.trandafyl.int20htrandafylback.dto.StudentRequest;
 import dev.trandafyl.int20htrandafylback.dto.StudentResponse;
 import dev.trandafyl.int20htrandafylback.mappers.StudentMapper;
+import dev.trandafyl.int20htrandafylback.models.Student;
 import dev.trandafyl.int20htrandafylback.repositories.StudentRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -21,5 +23,18 @@ public class StudentService {
         return student.map(studentMapper::toResponse);
     }
 
-//    public
+    public Student addStudent(StudentRequest studentRequest) {
+        Student student = studentMapper.toEntity(studentRequest);
+        return studentRepository.save(student);
+    }
+
+    public Student editStudent(long id, StudentRequest studentRequest) {
+        Student student = studentMapper.toEntity(studentRequest);
+        student.setId(id);
+        return studentRepository.save(student);
+    }
+
+    public void deleteStudent(long id) {
+        studentRepository.deleteById(id);
+    }
 }

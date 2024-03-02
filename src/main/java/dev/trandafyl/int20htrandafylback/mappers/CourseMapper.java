@@ -19,4 +19,14 @@ public class CourseMapper {
                 .teachers(course.getTeachers().stream().map(teacher -> teacher.getName() + " " + teacher.getSurname()).toList())
                 .build();
     }
+
+    public Course toEntity(CourseResponse courseResponse) {
+        return Course
+                .builder()
+                .id(courseResponse.getId())
+                .name(courseResponse.getName())
+                .description(courseResponse.getDescription())
+                .credits(courseResponse.getCredits())
+                .build();
+    }
 }

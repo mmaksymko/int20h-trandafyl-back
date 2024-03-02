@@ -1,5 +1,6 @@
 package dev.trandafyl.int20htrandafylback.mappers;
 
+import dev.trandafyl.int20htrandafylback.dto.GroupName;
 import dev.trandafyl.int20htrandafylback.dto.GroupResponse;
 import dev.trandafyl.int20htrandafylback.models.Group;
 import lombok.AllArgsConstructor;
@@ -22,6 +23,29 @@ public class GroupMapper {
     }
 
     public Group toEntity(GroupResponse groupResponse) {
-        return null;
+        return Group.builder()
+                .id(groupResponse.getId())
+                .number(groupResponse.getNumber())
+                .speciality(groupResponse.getSpeciality())
+                .year(groupResponse.getYear())
+                .courses(groupResponse.getCourses().stream().map(courseMapper::toEntity).collect(Collectors.toSet()))
+                .build();
+    }
+
+    public GroupName toGroupName(String groupName) {
+        var split = groupName.split("-");
+        var speciality = split[0];
+        var year = Integer.parseInt(split[1].substring(0,1));
+//        System.out.println(speciality);
+        var number = Integer.parseInt(split[1].substring(1));
+        return new GroupName(speciality, year, number);
+    }
+
+    public GroupName toGroupName(String speciality, int year, int number) {
+        return new GroupName(speciality, year, number);
+    }
+
+    public String nameToString(GroupName groupName) {
+        return groupName.speciality() + "-" + groupName.year() + "" + groupName.number();
     }
 }
