@@ -21,5 +21,7 @@ public class User {
     @Column(length = 64)
     private String patronymic;
 
+    @Basic(optional = false)
+    @Column(nullable = false, length = 64, unique = true)
     private String email;
 }
