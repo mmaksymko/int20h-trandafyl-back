@@ -24,5 +24,4 @@ public class UniTest {
     @OneToMany(mappedBy = "uniTest")
     private Set<UniQuestions> uniQuestions = new HashSet<>();
 
-
 }

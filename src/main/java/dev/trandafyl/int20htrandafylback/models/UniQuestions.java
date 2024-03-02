@@ -32,4 +32,13 @@ public class UniQuestions {
     @JoinColumn(name = "uni_test_id")
     private UniTest uniTest;
 
+    public Long getCorrectAnswer(){
+        for (UniOptions option : uniOptions) {
+            if (option.getIsCorrect()) {
+                return option.getId();
+            }
+        }
+        return null;
+    }
+
 }
