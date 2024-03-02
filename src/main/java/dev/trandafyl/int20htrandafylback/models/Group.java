@@ -43,6 +43,9 @@ public class Group {
     @ManyToMany
     private Set<Course> courses = new HashSet<>();
 
+    @ManyToMany
+    private Set<Student> students = new HashSet<>();
+
     public String getName() {
         return speciality + "-" + year + "" + number;
     }

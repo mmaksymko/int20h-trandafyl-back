@@ -1,8 +1,10 @@
 package dev.trandafyl.int20htrandafylback.mappers;
 
 import dev.trandafyl.int20htrandafylback.dto.GroupName;
+import dev.trandafyl.int20htrandafylback.dto.GroupRequest;
 import dev.trandafyl.int20htrandafylback.dto.GroupResponse;
 import dev.trandafyl.int20htrandafylback.models.Group;
+import dev.trandafyl.int20htrandafylback.services.CourseService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,13 +14,23 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class GroupMapper {
     private final CourseMapper courseMapper;
-
+    private final CourseService courseService;
     public GroupResponse toResponse(Group group) {
         return
                 GroupResponse.builder()
                 .id(group.getId())
                 .name(group.getName())
                 .courses(group.getCourses().stream().map(courseMapper::toResponse).collect(Collectors.toSet()))
+                .build();
+    }
+
+    public Group toEntity(GroupRequest groupRequest) {
+        var groupName = this.toGroupName(groupRequest.getGroupName());
+        return Group.builder()
+                .number(groupName.number())
+                .speciality(groupName.speciality())
+                .year(groupName.year())
+                .courses(courseService.getAllCoursesByIds(groupRequest.getCourses().stream().toList()).stream().map(courseMapper::toEntity).collect(Collectors.toSet()))
                 .build();
     }
 
