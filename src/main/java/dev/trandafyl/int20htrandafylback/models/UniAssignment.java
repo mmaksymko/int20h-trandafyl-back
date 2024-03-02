@@ -3,13 +3,14 @@ package dev.trandafyl.int20htrandafylback.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "course")
 @Data
-public class Course {
+@Entity
+@Table(name = "uni_assignment")
+public class UniAssignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,19 +21,19 @@ public class Course {
 
     @Basic(optional = false)
     @Column(nullable = false)
-    private String description;
+    private final LocalDateTime createdAt = LocalDateTime.now();
 
     @Basic(optional = false)
     @Column(nullable = false)
-    private Integer credits;
+    private LocalDateTime deadline;
 
-    @ManyToMany(mappedBy = "courses")
-    private Set<Teacher> teachers = new HashSet<>();
+    @Basic(optional = false)
+    @Column(nullable = false)
+    private Integer maxMark;
 
-    @ManyToMany
-    private Set<Group> groups = new HashSet<>();
+    @ManyToOne
+    private Course course;
 
-    @ManyToMany
-    private Set<UniAssignment> uniAssignments = new HashSet<>();
-
+    @OneToMany(mappedBy = "uniAssignment")
+    private Set<UniMarks> uniMarks = new HashSet<>();
 }
