@@ -27,7 +27,9 @@
 ---
 #### [Зайдіть, потицяйте (якщо ми встигли долаштувати деплоймент)](https://int20h-trandafyl-front.vercel.app/courses)
 #### [Бекенд на GCP](https://int20h-i6rjfxmega-lm.a.run.app)
-
+> Приклади GET-запитів:
+> https://int20h-i6rjfxmega-lm.a.run.app/courses/4/
+>  https://int20h-i6rjfxmega-lm.a.run.app/groups/ПЗ-36/
 ###### прикол
 ## ТзОВ "Трандáфиль" після захисту цього проєкту:
 ![My Remote Image](https://i.pinimg.com/564x/ac/6e/ed/ac6eedff4adc6530a86bac6da443c65a.jpg)
