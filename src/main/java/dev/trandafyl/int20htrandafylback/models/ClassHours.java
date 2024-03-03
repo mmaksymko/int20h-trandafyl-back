@@ -17,6 +17,18 @@ public class ClassHours {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Basic(optional = false)
+    @Column(nullable = false)
+    private Integer number;
+
+    @Basic(optional = false)
+    @Column(nullable = false)
+    private String startTime;
+
+    @Basic(optional = false)
+    @Column(nullable = false)
+    private String endTime;
+
     @OneToMany(mappedBy = "classHours")
     private Set<CourseClass> courseClasses = new HashSet<>();
 }

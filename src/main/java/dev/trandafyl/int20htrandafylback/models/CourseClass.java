@@ -18,6 +18,10 @@ public class CourseClass {
     @Column(nullable = false)
     private String name;
 
+    @Basic(optional = false)
+    @Column(nullable = false)
+    private String office;
+
     @ManyToMany
     private Set<Group> groups = new HashSet<>();
 
@@ -33,6 +37,10 @@ public class CourseClass {
 
     @Basic(optional = false)
     @Enumerated(EnumType.STRING)
+    private ClassType classType;
+
+    @Basic(optional = false)
+    @Enumerated(EnumType.STRING)
     private WeekDay weekDay;
 
     @ManyToOne
@@ -43,7 +51,4 @@ public class CourseClass {
         return classHours;
     }
 
-    public void setClassHours(ClassHours classHours) {
-        this.classHours = classHours;
-    }
 }
