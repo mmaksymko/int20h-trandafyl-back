@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -36,9 +35,6 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/", "/error", "/login/**", "/webjars/**", "/search/**").permitAll()
-                            .requestMatchers(HttpMethod.GET, "/auction-lots/", "/auction-lots/{id}/",
-                                    "/auction-lots/{lot_id}/bids/", "/auction-lots/{lot_id}/bids/{bid_id}/")
-                            .permitAll()
                             .anyRequest().authenticated();
                 })
                 .oauth2Login(oath2 -> {
