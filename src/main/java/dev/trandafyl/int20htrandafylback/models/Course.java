@@ -1,7 +1,10 @@
 package dev.trandafyl.int20htrandafylback.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +12,9 @@ import java.util.Set;
 @Entity
 @Table(name = "course")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +32,12 @@ public class Course {
     @Column(nullable = false)
     private Integer credits;
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany
     private Set<Teacher> teachers = new HashSet<>();
 
+    @ManyToMany
+    private Set<Group> groups = new HashSet<>();
+
+    @ManyToMany
+    private Set<UniAssignment> uniAssignments = new HashSet<>();
 }

@@ -24,4 +24,7 @@ public class User {
     @Basic(optional = false)
     @Column(nullable = false, length = 64, unique = true)
     private String email;
+
+    @Column(nullable = false, length = 64)
+    private String pfp;
 }
