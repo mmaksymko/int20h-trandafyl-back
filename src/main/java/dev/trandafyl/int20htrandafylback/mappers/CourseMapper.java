@@ -7,6 +7,8 @@ import dev.trandafyl.int20htrandafylback.services.TeacherService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+
 @Component
 @AllArgsConstructor
 public class CourseMapper {
@@ -32,7 +34,7 @@ public class CourseMapper {
         var teachers = teacherService.getTeachersByIds(courseRequest.getTeachersIds());
         return Course
                 .builder()
-                .teachers(teachers)
+                .teachers(new HashSet<>(teachers))
                 .credits(courseRequest.getCredits()).description(courseRequest.getDescription())
                 .name(courseRequest.getName()).build();
     }

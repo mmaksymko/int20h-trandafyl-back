@@ -6,13 +6,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @AllArgsConstructor
 public class TeacherService {
     private final TeacherRepository teacherRepository;
-    public Set<Teacher> getTeachersByIds(List<Long> ids){
-        return teacherRepository.findByIdIn(ids);
+    public List<Teacher> getTeachersByIds(List<Long> ids){
+        return teacherRepository.findByIdIn(ids).orElseThrow();
     }
 }
