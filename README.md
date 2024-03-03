@@ -20,10 +20,13 @@
 - Випадкові цитати про гроші від API Ninjas
 #### Технології, бібліотеки, фреймворки
 - Spring Boot 3
-- React
+- React + TypeScript
 - MySQL
+- Docker
+- Google Cloud Platform
 ---
 #### [Зайдіть, потицяйте (якщо ми встигли долаштувати деплоймент)](https://int20h-trandafyl-front.vercel.app/courses)
+#### [Бекенд на GCP] (https://int20h-i6rjfxmega-lm.a.run.app)
 
 ###### прикол
 ## ТзОВ "Трандáфиль" після захисту цього проєкту:
