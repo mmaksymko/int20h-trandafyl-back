@@ -12,9 +12,9 @@ import java.util.Set;
 @Entity
 @Table(name = "course")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,12 @@ public class Course {
     @Column(nullable = false)
     private Integer credits;
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany
     private Set<Teacher> teachers = new HashSet<>();
 
+    @ManyToMany
+    private Set<Group> groups = new HashSet<>();
+
+    @ManyToMany
+    private Set<UniAssignment> uniAssignments = new HashSet<>();
 }

@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Set;
+import java.util.Optional;
 
 public interface GroupRepository extends JpaRepository<Group, Long> {
     @Query("SELECT g.speciality || '-' || g.year || '' || g.number FROM Group g")

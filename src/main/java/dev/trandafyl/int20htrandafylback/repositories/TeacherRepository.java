@@ -6,8 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 import java.util.Set;
+import java.util.Optional;
 
 @Repository
 public interface TeacherRepository extends JpaRepository<Teacher, Long> {
-    Set<Teacher> findByIdIn(List<Long> ids);
+    Optional<List<Teacher>> findByIdIn(List<Long> ids);
 }
