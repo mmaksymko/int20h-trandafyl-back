@@ -12,6 +12,7 @@ public class CreateTestRequest {
     private LocalDateTime deadline;
     private Integer maxMark;
     private List<QuestionDto> questions;
+    private Long courseId;
 
     @Data
     public static class QuestionDto {

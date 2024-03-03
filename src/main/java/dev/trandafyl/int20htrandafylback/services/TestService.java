@@ -1,9 +1,6 @@
 package dev.trandafyl.int20htrandafylback.services;
 
-import dev.trandafyl.int20htrandafylback.dto.CreateTestRequest;
-import dev.trandafyl.int20htrandafylback.dto.TestResponse;
-import dev.trandafyl.int20htrandafylback.dto.TestResultResponse;
-import dev.trandafyl.int20htrandafylback.dto.TestTryRequest;
+import dev.trandafyl.int20htrandafylback.dto.*;
 import dev.trandafyl.int20htrandafylback.mappers.UniTestMapper;
 import dev.trandafyl.int20htrandafylback.models.*;
 import dev.trandafyl.int20htrandafylback.repositories.*;
@@ -22,6 +19,7 @@ public class TestService {
     private final UniMarksRepository marksRepository;
     private final UniQuestionsRepository questionsRepository;
     private final UniOptionsRepository optionsRepository;
+    private final CourseRepository courseRepository;
     private final UniTestMapper testMapper;
 
     public TestResponse getTest(Long testId) {
@@ -35,6 +33,7 @@ public class TestService {
         assignment.setName(request.getAssignmentName());
         assignment.setDeadline(request.getDeadline());
         assignment.setMaxMark(request.getMaxMark());
+        assignment.setCourse(courseRepository.findById(request.getCourseId()).orElseThrow());
         assignment = assignmentRepository.save(assignment);
 
         UniTest test = new UniTest();
