@@ -1,9 +1,15 @@
 package dev.trandafyl.int20htrandafylback.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @Data
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
 @MappedSuperclass
 public class User {
     @Id
@@ -25,6 +31,6 @@ public class User {
     @Column(nullable = false, length = 64, unique = true)
     private String email;
 
-    @Column(nullable = false, length = 64)
+    @Column(length = 256)
     private String pfp;
 }
