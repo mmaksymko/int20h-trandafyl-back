@@ -6,12 +6,18 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
 public class TeacherService {
     private final TeacherRepository teacherRepository;
-    public List<Teacher> getTeachersByIds(List<Long> ids){
+
+    public List<Teacher> getTeachersByIds(List<Long> ids) {
         return teacherRepository.findByIdIn(ids).orElseThrow();
+    }
+
+    public Optional<Teacher> getTeacherByEmail(String email) {
+        return teacherRepository.findByEmail(email);
     }
 }

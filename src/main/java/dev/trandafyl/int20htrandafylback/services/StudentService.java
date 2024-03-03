@@ -27,6 +27,11 @@ public class StudentService {
         return student.map(studentMapper::toResponse);
     }
 
+    public Optional<StudentResponse> getStudent(String email) {
+        var student = studentRepository.findByEmail(email);
+        return student.map(studentMapper::toResponse);
+    }
+
     public Student addStudent(StudentRequest studentRequest) {
         Student student = studentMapper.toEntity(studentRequest);
         return studentRepository.save(student);
@@ -45,4 +50,5 @@ public class StudentService {
     public Set<StudentResponse> getStudentsByName(String name) {
         return groupRepository.findAllStudentsByName(name).stream().map(studentMapper::toResponse).collect(Collectors.toSet());
     }
+
 }
