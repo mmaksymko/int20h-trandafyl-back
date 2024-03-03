@@ -8,6 +8,7 @@ import dev.trandafyl.int20htrandafylback.repositories.GroupRepository;
 import dev.trandafyl.int20htrandafylback.repositories.StudentRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.Set;
@@ -51,4 +52,15 @@ public class StudentService {
         return groupRepository.findAllStudentsByName(name).stream().map(studentMapper::toResponse).collect(Collectors.toSet());
     }
 
+    public Student getStudentByEmail(String email) {
+        return studentRepository.findByEmail(email).orElseThrow();
+    }
+
+    public StudentResponse getCurrentStudent() {
+        return studentMapper.toResponse(getStudentByEmail(getCurrentStudentEntity().getEmail()));
+    }
+
+    public Student getCurrentStudentEntity() {
+        return getStudentByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+    }
 }

@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.*;
 public class StudentController {
     private final StudentService studentService;
 
+    @GetMapping
+    public ResponseEntity<StudentResponse> getCurrentStudent() {
+        return ResponseEntity.ok(
+                studentService.getCurrentStudent());
+    }
+
     @GetMapping("{id}/")
     public ResponseEntity<StudentResponse> getStudent(@PathVariable long id) {
         return ResponseEntity.ok(
