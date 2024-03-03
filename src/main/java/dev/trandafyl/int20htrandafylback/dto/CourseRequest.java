@@ -1,3 +1,13 @@
 package dev.trandafyl.int20htrandafylback.dto;
 
-public class CourseRequest {}
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class CourseRequest {
+    private String name;
+    private String description;
+    private Integer credits;
+    private List<Long> teachersIds;
+}
