@@ -17,6 +17,6 @@ COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
 
-ENTRYPOINT ["java","-cp","app:app/lib/*","trandafyl.dev.int20htrandafylback.Int20hTrandafylBackApplication"]
+ENTRYPOINT ["java","-cp","app:app/lib/*","dev.trandafyl.int20htrandafylback.Int20hTrandafylBackApplication"]
 
 EXPOSE 8081
