@@ -4,9 +4,7 @@ package dev.trandafyl.int20htrandafylback.mappers;
 import dev.trandafyl.int20htrandafylback.dto.StudentRequest;
 import dev.trandafyl.int20htrandafylback.dto.StudentResponse;
 import dev.trandafyl.int20htrandafylback.models.Student;
-import dev.trandafyl.int20htrandafylback.repositories.GroupRepository;
 import dev.trandafyl.int20htrandafylback.services.GroupService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -21,8 +19,6 @@ public class StudentMapper {
     private final GroupService groupService;
     @Value("${user.default.pfp.link}")
     private String defaultPfp;
-    @Autowired
-    GroupRepository groupRepository;
 
     public StudentMapper(GroupMapper groupMapper, GroupService groupService) {
         this.groupMapper = groupMapper;

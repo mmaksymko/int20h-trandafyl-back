@@ -4,11 +4,14 @@ import dev.trandafyl.int20htrandafylback.dto.StudentRequest;
 import dev.trandafyl.int20htrandafylback.dto.StudentResponse;
 import dev.trandafyl.int20htrandafylback.mappers.StudentMapper;
 import dev.trandafyl.int20htrandafylback.models.Student;
+import dev.trandafyl.int20htrandafylback.repositories.GroupRepository;
 import dev.trandafyl.int20htrandafylback.repositories.StudentRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -17,6 +20,7 @@ import java.util.Optional;
 public class StudentService {
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
+    private final GroupRepository groupRepository;
 
     public Optional<StudentResponse> getStudent(long id) {
         var student = studentRepository.findById(id);
@@ -36,5 +40,9 @@ public class StudentService {
 
     public void deleteStudent(long id) {
         studentRepository.deleteById(id);
+    }
+
+    public Set<StudentResponse> getStudentsByName(String name) {
+        return groupRepository.findAllStudentsByName(name).stream().map(studentMapper::toResponse).collect(Collectors.toSet());
     }
 }

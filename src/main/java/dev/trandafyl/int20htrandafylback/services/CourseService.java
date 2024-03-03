@@ -24,6 +24,8 @@ public class CourseService {
     }
 
     public CourseResponse addCourse(CourseRequest courseRequest) {
-        return courseMapper.toResponse(courseRepository.save(courseMapper.toEntity(courseRequest)));
+        var course = courseMapper.toEntity(courseRequest);
+        course.getTeachers().forEach(teacher -> teacher.getCourses().add(course));
+        return courseMapper.toResponse(courseRepository.save(course));
     }
 }

@@ -3,10 +3,8 @@ package dev.trandafyl.int20htrandafylback.services;
 import dev.trandafyl.int20htrandafylback.dto.CourseResponse;
 import dev.trandafyl.int20htrandafylback.dto.GroupRequest;
 import dev.trandafyl.int20htrandafylback.dto.GroupResponse;
-import dev.trandafyl.int20htrandafylback.dto.StudentResponse;
 import dev.trandafyl.int20htrandafylback.mappers.CourseMapper;
 import dev.trandafyl.int20htrandafylback.mappers.GroupMapper;
-import dev.trandafyl.int20htrandafylback.mappers.StudentMapper;
 import dev.trandafyl.int20htrandafylback.models.Group;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +20,6 @@ import java.util.stream.Collectors;
 public class GroupService {
     private final GroupRepository groupRepository;
     private final GroupMapper groupMapper;
-    private final StudentMapper studentMapper;
     private final CourseMapper courseMapper;
     private final CourseService courseService;
 
@@ -63,10 +60,6 @@ public class GroupService {
         group.setId(getByGroupName(name).getId());
 
         return groupMapper.toResponse(groupRepository.save(group));
-    }
-
-    public Set<StudentResponse> getStudentsByName(String name) {
-        return groupRepository.findAllStudentsByName(name).stream().map(studentMapper::toResponse).collect(Collectors.toSet());
     }
 
     public Set<CourseResponse> getCoursesByName(String name) {

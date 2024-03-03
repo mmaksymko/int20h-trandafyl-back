@@ -5,6 +5,7 @@ import dev.trandafyl.int20htrandafylback.dto.GroupRequest;
 import dev.trandafyl.int20htrandafylback.dto.GroupResponse;
 import dev.trandafyl.int20htrandafylback.dto.StudentResponse;
 import dev.trandafyl.int20htrandafylback.services.GroupService;
+import dev.trandafyl.int20htrandafylback.services.StudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.Set;
 @RequestMapping("/groups/")
 public class GroupController {
     private final GroupService groupService;
+    private final StudentService studentService;
 
     @GetMapping
     public ResponseEntity<List<GroupResponse>> getGroups() {
@@ -49,7 +51,7 @@ public class GroupController {
 
     @GetMapping("{name}/students/")
     public ResponseEntity<Set<StudentResponse>> getStudents(@PathVariable String name) {
-        return ResponseEntity.ok(groupService.getStudentsByName(name));
+        return ResponseEntity.ok(studentService.getStudentsByName(name));
     }
 
     @GetMapping("{name}/courses/")
@@ -58,8 +60,8 @@ public class GroupController {
     }
 
     @PostMapping("{name}/courses/{courseId}/")
-    public void addStudent(@PathVariable String name, @RequestBody Long courseId) {
-        groupService.addToCourse(name, courseId);
+    public ResponseEntity<CourseResponse> addStudent(@PathVariable String name, @PathVariable Long courseId) {
+        return ResponseEntity.ok(groupService.addToCourse(name, courseId));
     }
 
     @DeleteMapping("{name}/courses/{courseId}/")

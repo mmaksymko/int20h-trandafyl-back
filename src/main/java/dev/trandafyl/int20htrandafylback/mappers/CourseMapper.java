@@ -14,9 +14,13 @@ public class CourseMapper {
     private final TeacherService teacherService;
 
     public CourseResponse toResponse(Course course) {
-        return CourseResponse.builder().id(course.getId()).name(course.getName()).description(course.getDescription())
-                .credits(course.getCredits()).teachers(
-                        course.getTeachers().stream().map(teacher -> teacher.getName() + " " + teacher.getSurname()).toList()).build();
+        return CourseResponse
+                .builder()
+                .id(course.getId())
+                .name(course.getName())
+                .description(course.getDescription())
+                .credits(course.getCredits())
+                .teachers(course.getTeachers().stream().map(teacher -> teacher.getName() + " " + teacher.getSurname()).toList()).build();
     }
 
     public Course toEntity(CourseResponse courseResponse) {
@@ -25,7 +29,10 @@ public class CourseMapper {
     }
 
     public Course toEntity(CourseRequest courseRequest) {
-        return Course.builder().teachers(teacherService.getTeachersByIds(courseRequest.getTeachersIds()))
+        var teachers = teacherService.getTeachersByIds(courseRequest.getTeachersIds());
+        return Course
+                .builder()
+                .teachers(teachers)
                 .credits(courseRequest.getCredits()).description(courseRequest.getDescription())
                 .name(courseRequest.getName()).build();
     }

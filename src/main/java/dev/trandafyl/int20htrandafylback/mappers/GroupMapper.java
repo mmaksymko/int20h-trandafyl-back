@@ -19,7 +19,11 @@ public class GroupMapper {
         return
                 GroupResponse.builder()
                 .id(group.getId())
+                .year(group.getYear())
+                .speciality(group.getSpeciality())
+                .number(group.getNumber())
                 .name(group.getName())
+                .degreeType(group.getDegreeType())
                 .courses(group.getCourses().stream().map(courseMapper::toResponse).collect(Collectors.toSet()))
                 .build();
     }
@@ -29,6 +33,7 @@ public class GroupMapper {
         return Group.builder()
                 .number(groupName.number())
                 .speciality(groupName.speciality())
+                .degreeType(groupRequest.getDegreeType())
                 .year(groupName.year())
                 .courses(courseService.getAllCoursesByIds(groupRequest.getCourses().stream().toList()).stream().map(courseMapper::toEntity).collect(Collectors.toSet()))
                 .build();
@@ -48,7 +53,6 @@ public class GroupMapper {
         var split = groupName.split("-");
         var speciality = split[0];
         var year = Integer.parseInt(split[1].substring(0,1));
-//        System.out.println(speciality);
         var number = Integer.parseInt(split[1].substring(1));
         return new GroupName(speciality, year, number);
     }
