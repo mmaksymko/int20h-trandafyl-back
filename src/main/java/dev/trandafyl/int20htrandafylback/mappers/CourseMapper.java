@@ -36,13 +36,4 @@ public class CourseMapper {
                 .credits(courseRequest.getCredits()).description(courseRequest.getDescription())
                 .name(courseRequest.getName()).build();
     }
-
-    public Course toEntity(CourseRequest course) {
-        return Course
-                .builder()
-                .name(course.getName())
-                .description(course.getDescription())
-                .credits(course.getCredits())
-                .build();
-    }
 }
