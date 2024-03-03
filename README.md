@@ -26,7 +26,7 @@
 - Google Cloud Platform
 ---
 #### [Зайдіть, потицяйте (якщо ми встигли долаштувати деплоймент)](https://int20h-trandafyl-front.vercel.app/courses)
-#### [Бекенд на GCP] (https://int20h-i6rjfxmega-lm.a.run.app)
+#### [Бекенд на GCP](https://int20h-i6rjfxmega-lm.a.run.app)
 
 ###### прикол
 ## ТзОВ "Трандáфиль" після захисту цього проєкту:
